@@ -14,6 +14,7 @@ $(document).ready(function(){
   FbAPI.getTodos()
   .then(() => {
     FbAPI.writeDom();
+    countTask();
   })
   .catch((error) => {
     console.log("getTodos Error", error);
@@ -31,6 +32,7 @@ $(document).ready(function(){
     $(".list-container").removeClass("hide");
     $(".new-container").addClass("hide");
       FbAPI.writeDom();
+      countTask();
     }).catch((error) => {
       console.log("addTodo error", error);
     });
@@ -55,7 +57,10 @@ $(document).ready(function(){
 
 
 
-
+  let countTask = () => {
+    let remainingTasks = $("#incomplete-tasks li").length; //select all li's in incomplete tasks
+    $("#counter").hide().fadeIn(3000).html(remainingTasks);
+  };
 
 
 
