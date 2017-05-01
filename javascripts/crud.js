@@ -37,6 +37,19 @@ var FbAPI = ((oldCrap) => {
     });
   };
 
+  oldCrap.checker = (id) => {
+    return new Promise((resolve, reject) =>{
+    FbAPI.setChecked(id);
+    resolve();
+    });
+  };
+
+  oldCrap.deleteTodo = (id) => {
+    return new Promise((resolve, reject) => {
+      FbAPI.duhlete(id);
+      resolve();
+    });
+  };
 
 
 
