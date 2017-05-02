@@ -1,12 +1,12 @@
 var FbAPI = ((oldCrap) => {
 //write in here function to call on main iffe
 
-  oldCrap.getTodos = () => {
+  oldCrap.getTodos = (apiKeys) => {
     let items = [];
     return new Promise ((resolve, reject) => {
-      $.ajax("./database/seed.json")
+      $.ajax(`${apiKeys.databaseURL}/items.json`)
       .done((data) => {
-        let response = data.items;
+        let response = data;
         //loop over each key inside response
         Object.keys(response).forEach((key) =>{ //loops thru every single key and
           // console.log("key", key);
@@ -19,8 +19,7 @@ var FbAPI = ((oldCrap) => {
           //id: "item0"
           //}
         });
-        FbAPI.setTodos(items);
-        resolve();
+        resolve(items);
       })
       .fail((error) => {
         reject(error);

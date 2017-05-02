@@ -1,7 +1,8 @@
 var FbAPI = ((otherOldCrap) =>{
 
-  otherOldCrap.writeDom = () => {
-    let todos = FbAPI.todoGetter();
+  otherOldCrap.writeDom = (keys) => {
+    FbAPI.getTodos(keys).then((results) => {
+    let todos = results;
     let doneString = "";
     let notDoneString = "";
     // console.log("todos in writeDom", todos);
@@ -33,6 +34,9 @@ var FbAPI = ((otherOldCrap) =>{
 
     $("#completed-tasks").html(doneString);
     $("#incomplete-tasks").html(notDoneString);
+    }).catch((error) => {
+      console.log("writeDom error", error);
+    });
   };
 
 
