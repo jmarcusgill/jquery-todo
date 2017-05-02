@@ -51,6 +51,13 @@ var FbAPI = ((oldCrap) => {
     });
   };
 
+  oldCrap.editTodo = (id) => {
+    return new Promise((resolve, reject) => {
+      FbAPI.duhlete(id);
+      resolve();
+    });
+  };
+
 
 
 
