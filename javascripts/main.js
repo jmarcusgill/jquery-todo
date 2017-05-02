@@ -17,8 +17,6 @@ $(document).ready(function(){
     apiKeys = keys;
     firebase.initializeApp(apiKeys);
     FbAPI.writeDom(apiKeys);
-    countTask();
-
   }).catch((error) => {
     console.log("key errors", error);
   });
@@ -44,8 +42,7 @@ $(document).ready(function(){
     $("#add-todo-text").val("");
     $(".list-container").removeClass("hide");
     $(".new-container").addClass("hide");
-      FbAPI.writeDom();
-      countTask();
+      FbAPI.writeDom(apiKeys);
     }).catch((error) => {
       console.log("addTodo error", error);
     });
@@ -57,9 +54,8 @@ $(document).ready(function(){
 
   //delete todo
   $(".main-container").on("click", ".delete", (event) => {
-    FbAPI.deleteTodo(event.target.id).then(() => {
-      FbAPI.writeDom();
-      countTask();
+    FbAPI.deleteTodo(apiKeys, event.target.id).then(() => {
+      FbAPI.writeDom(apiKeys);
     }).catch((error) => {
       console.log("error in deleteTodo", error);
     });
@@ -81,8 +77,7 @@ $(document).ready(function(){
 
   //complete todo
   $(".main-container").on("click", "input[type='checkbox']", (event) => {
-    FbAPI.writeDom();
-    countTask();
+    FbAPI.writeDom(apiKeys);
     FbAPI.checker(event.target.id).then(() => {
 
     }).catch((error) => {
@@ -101,10 +96,7 @@ $(document).ready(function(){
 
 
 
-  let countTask = () => {
-    let remainingTasks = $("#incomplete-tasks li").length; //select all li's in incomplete tasks
-    $("#counter").hide().fadeIn(3000).html(remainingTasks);
-  };
+
 
 
 

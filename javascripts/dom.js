@@ -1,5 +1,10 @@
 var FbAPI = ((otherOldCrap) =>{
 
+    otherOldCrap.countTask = () => {
+    let remainingTasks = $("#incomplete-tasks li").length; //select all li's in incomplete tasks
+    $("#counter").hide().fadeIn(3000).html(remainingTasks);
+  };
+
   otherOldCrap.writeDom = (keys) => {
     FbAPI.getTodos(keys).then((results) => {
     let todos = results;
@@ -34,6 +39,8 @@ var FbAPI = ((otherOldCrap) =>{
 
     $("#completed-tasks").html(doneString);
     $("#incomplete-tasks").html(notDoneString);
+
+    otherOldCrap.countTask();
     }).catch((error) => {
       console.log("writeDom error", error);
     });
