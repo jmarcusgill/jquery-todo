@@ -101,8 +101,19 @@ $(document).ready(function(){
     });
   });
 
+  //login button events
+  $("#registerButton").click(() => {
+    let email = $("#inputEmail").val();
+    let password = $("#inputPassword").val();
+    let username = $("#inputUsername").val();
 
-
+    let user = {email, password}; //es6 shorthand when key and object are SAME! "email": email, "password": password
+    FbAPI.registerUser(user).then((response) => {
+      console.log("register response", response);
+    }).catch((error) => {
+      console.log("error in registerUser", error);
+    });
+  });
 
 
 
