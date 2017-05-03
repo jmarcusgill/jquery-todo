@@ -109,9 +109,16 @@ $(document).ready(function(){
 
     let user = {email, password}; //es6 shorthand when key and object are SAME! "email": email, "password": password
     FbAPI.registerUser(user).then((response) => {
-      console.log("register response", response);
-    }).catch((error) => {
-      console.log("error in registerUser", error);
+      console.log("register response", response.uid);
+      let newUser = {
+        uid: response.uid,
+        username: username
+      };
+      FbAPI.addUser(apiKeys, newUser).then((response) => {
+        console.log("addUser", response);
+      }).catch((error) => {
+        console.log("error in addUser", error);
+      });
     });
   });
 
