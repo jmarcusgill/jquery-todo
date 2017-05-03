@@ -101,7 +101,7 @@ $(document).ready(function(){
     });
   });
 
-  //login button events
+  //register/login button events
   $("#registerButton").click(() => {
     let email = $("#inputEmail").val();
     let password = $("#inputPassword").val();
@@ -119,6 +119,28 @@ $(document).ready(function(){
       }).catch((error) => {
         console.log("error in addUser", error);
       });
+    });
+  });
+
+  let clearLogin = () => {
+    $("#inputEmail").val();
+    $("#inputPassword").val();
+    $("#inputUsername").val();
+  };
+
+  $("#loginButton").click(() => {
+    let email = $("#inputEmail").val();
+    let password = $("#inputPassword").val();
+
+    let user = {email, password};
+
+    FbAPI.loginUser(user).then((response) => {
+      clearLogin();
+      $("#login-container").addClass("hide");
+      $(".main-container").removeClass("hide");
+      FbAPI.writeDom(apiKeys);
+    }).catch((error) => {
+      console.log(error);
     });
   });
 
