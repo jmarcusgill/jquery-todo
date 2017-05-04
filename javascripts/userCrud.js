@@ -5,7 +5,7 @@ var FbAPI = ((cats) => {
     return new Promise ((resolve, reject) => {
       $.ajax({
         method: "POST",
-        url: `${keys.databaseURL}/users.json`,
+        url: `${keys.databaseURL}/user.json`,
         data: JSON.stringify(newUser)
       }).done((response) => {
         resolve(response);

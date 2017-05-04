@@ -115,7 +115,15 @@ $(document).ready(function(){
         username: username
       };
       FbAPI.addUser(apiKeys, newUser).then((response) => {
-        console.log("addUser", response);
+      console.log("addUser", response);
+      FbAPI.loginUser(user).then((response) => {
+        clearLogin();
+        $("#login-container").addClass("hide");
+        $(".main-container").removeClass("hide");
+        FbAPI.writeDom(apiKeys);
+    }).catch((error) => {
+      console.log(error);
+    });
       }).catch((error) => {
         console.log("error in addUser", error);
       });
