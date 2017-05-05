@@ -29,6 +29,7 @@ var FbAPI = ((oldCrap) => {
   };
 
   oldCrap.addTodo = (apiKeys, newTodo) => {
+    newTodo.uid = FbAPI.credentialsCurrentUser().uid;
     return new Promise ((resolve, reject) => {
       $.ajax({
         method: "POST",
@@ -56,12 +57,13 @@ var FbAPI = ((oldCrap) => {
     });
   };
 
-  oldCrap.editTodo = (apiKeys, newTodo, id) => {
+  oldCrap.editTodo = (apiKeys, editTodo, id) => {
+    editTodo.uid = FbAPI.credentialsCurrentUser().uid;
     return new Promise((resolve, reject) => {
       $.ajax({
         method: "PUT",
         url: `${apiKeys.databaseURL}/items/${id}.json`,
-        data: JSON.stringify(newTodo) //takes json structure and creates string
+        data: JSON.stringify(editTodo) //takes json structure and creates string
       }).done(() => {
         resolve();
       }).fail((error) => {
@@ -69,13 +71,6 @@ var FbAPI = ((oldCrap) => {
       });
     });
   };
-
-
-
-
-
-
-
 
   return oldCrap;
 })(FbAPI || {});

@@ -13,7 +13,6 @@ $(document).ready(function(){
     $(".new-container").addClass("hide");
   });
 
-
   FbAPI.firebaseCredentials().then((keys) => {
     apiKeys = keys;
     firebase.initializeApp(apiKeys);
@@ -21,16 +20,6 @@ $(document).ready(function(){
   }).catch((error) => {
     console.log("key errors", error);
   });
-
-  //get todo
-  // FbAPI.getTodos()
-  // .then(() => {
-  //   FbAPI.writeDom();
-  //   countTask();
-  // })
-  // .catch((error) => {
-  //   console.log("getTodos Error", error);
-  // });
 
   //add todo
   $("#add-todo-button").click(() => {
@@ -62,9 +51,6 @@ $(document).ready(function(){
       });
     }
   });
-
-
-
 
 
   //delete todo
@@ -159,29 +145,6 @@ $(document).ready(function(){
     $("#login-container").removeClass("hide");
     $(".main-container").addClass("hide");
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
