@@ -46,6 +46,14 @@ var FbAPI = ((otherOldCrap) =>{
     });
   };
 
+  otherOldCrap.createLogoutButton = (apiKey) => {
+    let uid = FbAPI.credentialsCurrentUser().uid;
+    FbAPI.getUser(apiKey, uid).then((user) => {
+    let logoutButton = `<button class="btn btn-danger" id="logoutButton">LOGOUT ${user.username}</button>`;
+    $("#logout-container").html(logoutButton);
+    });
+  };
+
 
 
   return otherOldCrap;
