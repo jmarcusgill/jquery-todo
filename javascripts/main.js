@@ -17,7 +17,7 @@ $(document).ready(function(){
   FbAPI.firebaseCredentials().then((keys) => {
     apiKeys = keys;
     firebase.initializeApp(apiKeys);
-    FbAPI.writeDom(apiKeys);
+    // FbAPI.writeDom(apiKeys);
   }).catch((error) => {
     console.log("key errors", error);
   });

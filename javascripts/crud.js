@@ -4,7 +4,8 @@ var FbAPI = ((oldCrap) => {
   oldCrap.getTodos = (apiKeys) => {
     let items = [];
     return new Promise ((resolve, reject) => {
-      $.ajax(`${apiKeys.databaseURL}/items.json`)
+      let uid = FbAPI.credentialsCurrentUser().uid;
+      $.ajax(`${apiKeys.databaseURL}/items.json?orderBy="uid"&equalTo="${uid}"`)
       .done((data) => {
         let response = data;
         //loop over each key inside response
